@@ -1,0 +1,25 @@
+{
+  "name": "keamedicaltest",
+  "version": "1.0.0",
+  "description": "Kea Medical Test : webservices pour une application de gestion de carrière au sein de l’entreprise,",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Express",
+    "RestAPI",
+    "MongoDB",
+    "Mongoose",
+    "Kea Medical"
+  ],
+  "author": "Bignon Febron",
+  "license": "FBR",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.2.8"
+  }
+}
