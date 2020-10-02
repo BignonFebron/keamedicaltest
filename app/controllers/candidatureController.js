@@ -3,6 +3,8 @@ const Candidat = require('../models/candidat.js');
 const Candidature = require('../models/candidature.js');
 var verifyjwt = require('../security/jwt.js');
 
+var toreturn =[]
+
 // Link candidat to a poste
 exports.createNewCandidateure = (req, res) => {
     userId = verifyjwt.verifyToken(req, res);
@@ -30,7 +32,6 @@ exports.createNewCandidateure = (req, res) => {
 
 //retrieve candidate which candidate for a poste
 exports.getByPoste = (req,res) => {
-    let toreturn =[]
     // token cheking
     verifyjwt.verifyToken(req, res);
     Candidature.find({ "poste": req.query.posteId })
@@ -38,15 +39,15 @@ exports.getByPoste = (req,res) => {
             candidatures.forEach(element => {
                 Candidat.findById(element.candidat, function (err, candidat) {
                     toreturn.push({"nom":candidat.nom,"prenom":candidat.prenom,
-                    "telephone":candidat.telephone,"urlCV":element.urlCV});
+                    "telephone":candidat.telephone,"urlCV":element.urlCV})
+
+                    res.send(toreturn);
                 });
+               
             });
         }).catch(err => {
             res.status(500).send({
                 message: err.message || "Some error occurred while retrieving postes."
             });
         });
-        console.log('--------------------------------------------------------');
-            console.log(toreturn);
-            res.send(toreturn);
 };
